@@ -1,5 +1,9 @@
 import os
 
+proprietarios = [{"nome":"Ricardo", "Imóvel":"prédio", "ativo":True},
+                 {"nome": "Roberta", "Imóvel":"casa", "ativo": False},
+                 {"nome": "Lisa", "Imóvel":"sala-comercial", "ativo":True}] 
+
 def mostra_titulo():
     print("""
 
@@ -11,28 +15,55 @@ def mostra_titulo():
 
 def mostra_escolhas():
     print("1. Cadastrar proprietário")
-    print("2. Listar Imóveis")
+    print("2. Listar proprietários")
     print("3. Ativar Imóvel")
     print("4. Sair")
 
 def escolhe_opcao():
+
+    def exibir_subtitulo(texto):
+        os.system("cls")
+        print(texto)
+        print("")
+
+    def retorna_menu():
+        input("Digite uma tecla para voltar ao menu principal")
+        main()
+
+    def cadastra_proprietario():
+        exibir_subtitulo("Cadastar proprietário")
+        nome_proprietario = input("Digite o nome do proprietário que deseja cadastrar")
+        proprietarios.append(nome_proprietario)
+        print(f" o prprietario {nome_proprietario} foi cadastrado com sucesso\n")
+
+        retorna_menu()
+    
+    def listar_proprietarios():
+        exibir_subtitulo("Listar proprietários cadastrados")
+
+        for proprietario in proprietarios:
+            nome_proprietario = proprietario["nome"]
+            imovel_proprietario = proprietario["Imóvel"]
+            ativo = proprietario["ativo"] 
+            print(f" - {nome_proprietario} | {imovel_proprietario} | {ativo}")
+
+        retorna_menu()
     
     def finalizar_programa():
-        os.system("cls")
-        print("Flinalizando o progrma\n")
+        exibir_subtitulo("Flinalizando o progrma\n")
     
     def opcao_invalida():
         print("Esse carácter não é permitido ")
-        input("Aperte qualquer tecla para voltar")
-        main()
+        
+        retorna_menu()
 
     try:
         opcao_escolhida = int(input("Escolha um opção:"))
         
         if opcao_escolhida == 1:
-            print("Você escolher Cadastrar proprietário")
+            cadastra_proprietario()
         elif opcao_escolhida ==2:
-            print("Você escolher Listar Imóveis")
+            listar_proprietarios()
         elif opcao_escolhida ==3:
             print("Você escolher Ativar Imóvel")
         elif opcao_escolhida ==4:
