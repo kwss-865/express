@@ -1,8 +1,8 @@
 import os
 
-proprietarios = [{"nome":"Ricardo", "Imóvel":"prédio", "ativo":True},
-                 {"nome": "Roberta", "Imóvel":"casa", "ativo": False},
-                 {"nome": "Lisa", "Imóvel":"sala-comercial", "ativo":True}] 
+proprietarios = [{"nome":"Ricardo", "imóvel":"prédio", "ativo":True},
+                 {"nome": "Roberta", "imóvel":"casa", "ativo": False},
+                 {"nome": "Lisa", "imóvel":"sala-comercial", "ativo":True}] 
 
 def mostra_titulo():
     print("""
@@ -32,9 +32,12 @@ def escolhe_opcao():
 
     def cadastra_proprietario():
         exibir_subtitulo("Cadastar proprietário")
+
         nome_proprietario = input("Digite o nome do proprietário que deseja cadastrar")
-        proprietarios.append(nome_proprietario)
-        print(f" o prprietario {nome_proprietario} foi cadastrado com sucesso\n")
+        imovel_proprietario = input(f"Digite o imóvel que {nome_proprietario} irá comprar/alugar") 
+        dados_do_proprietario = {"nome":nome_proprietario, "imóvel":imovel_proprietario, "ativo":True}
+        proprietarios.append(dados_do_proprietario) 
+        print(f" o proprietario {nome_proprietario} foi cadastrado com sucesso\n") 
 
         retorna_menu()
     
@@ -43,7 +46,7 @@ def escolhe_opcao():
 
         for proprietario in proprietarios:
             nome_proprietario = proprietario["nome"]
-            imovel_proprietario = proprietario["Imóvel"]
+            imovel_proprietario = proprietario["imóvel"]
             ativo = proprietario["ativo"] 
             print(f" - {nome_proprietario} | {imovel_proprietario} | {ativo}")
 
