@@ -16,13 +16,13 @@ def mostra_titulo():
 def mostra_escolhas():
     print("1. Cadastrar proprietário")
     print("2. Listar proprietários")
-    print("3. Ativar Imóvel")
+    print("3. Ativar proprietário")
     print("4. Sair")
 
 def escolhe_opcao():
 
     def exibir_subtitulo(texto):
-        os.system("cls")
+        os.system("clear")
         print(texto)
         print("")
 
@@ -52,6 +52,20 @@ def escolhe_opcao():
 
         retorna_menu()
     
+    def ativar_proprietario():
+        exibir_subtitulo()
+        nome_proprietario = input("Digitr o nome do proprietário que deseja ativar:")
+        proprietario_encontrado = False 
+
+        for proprietario in proprietarios:
+            if nome_proprietario == proprietario["nome"]
+            proprietario_encontrado = True
+            proprietario["ativo"] = not proprietario["ativo"]
+            mensagem = f" O imóvel de {nome_proprietario} foi ativado com sucesso" if proprietario["ativo"] else f" O imóvel {nome_proprietario} foi desativado com sucesso"
+            print("mensagem")
+        if not proprietario_encontrado:
+            print("Não encontrado") 
+
     def finalizar_programa():
         exibir_subtitulo("Flinalizando o progrma\n")
     
