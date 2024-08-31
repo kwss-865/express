@@ -17,14 +17,17 @@ def mostra_escolhas():
     print("1. Cadastrar proprietário")
     print("2. Listar proprietários")
     print("3. Ativar proprietário")
-    print("4. Sair")
+    print("4. Sair\n")
 
 def escolhe_opcao():
 
     def exibir_subtitulo(texto):
-        os.system("clear")
+        os.system("cls")
+        linha = "*" * len(texto)
+        print(linha)
         print(texto)
-        print("")
+        print(linha)
+        print(" ")
 
     def retorna_menu():
         input("Digite uma tecla para voltar ao menu principal")
@@ -43,28 +46,32 @@ def escolhe_opcao():
     
     def listar_proprietarios():
         exibir_subtitulo("Listar proprietários cadastrados")
-
+        
+        print(f"{"Nome do proprietário".ljust(22)} | {"imóvel".ljust(20)} | Status ")
         for proprietario in proprietarios:
             nome_proprietario = proprietario["nome"]
-            imovel_proprietario = proprietario["imóvel"]
-            ativo = proprietario["ativo"] 
-            print(f" - {nome_proprietario} | {imovel_proprietario} | {ativo}")
+            imovel_propritario  = proprietario["imóvel"] 
+            ativo = "Ativado" if proprietario["ativo"] else "Desativado"
+            print(f" - {nome_proprietario.ljust(20)} | {imovel_propritario.ljust(20)} | {ativo}")
+            
 
         retorna_menu()
     
     def ativar_proprietario():
-        exibir_subtitulo()
-        nome_proprietario = input("Digitr o nome do proprietário que deseja ativar:")
+        exibir_subtitulo("Ativar proprietário")
+        nome_proprietario = input("Digite o nome do proprietário que deseja ativar:")
         proprietario_encontrado = False 
 
         for proprietario in proprietarios:
-            if nome_proprietario == proprietario["nome"]
-            proprietario_encontrado = True
-            proprietario["ativo"] = not proprietario["ativo"]
-            mensagem = f" O imóvel de {nome_proprietario} foi ativado com sucesso" if proprietario["ativo"] else f" O imóvel {nome_proprietario} foi desativado com sucesso"
-            print("mensagem")
+            if nome_proprietario == proprietario["nome"]:
+                proprietario_encontrado = True
+                proprietario["ativo"] = not proprietario["ativo"]
+                mensagem = f"O imóvel de {nome_proprietario} foi ativado com sucesso" if proprietario["ativo"] else f" O imóvel {nome_proprietario} foi desativado com sucesso"
+                print(mensagem)
+
         if not proprietario_encontrado:
             print("Não encontrado") 
+        retorna_menu()
 
     def finalizar_programa():
         exibir_subtitulo("Flinalizando o progrma\n")
@@ -82,7 +89,7 @@ def escolhe_opcao():
         elif opcao_escolhida ==2:
             listar_proprietarios()
         elif opcao_escolhida ==3:
-            print("Você escolher Ativar Imóvel")
+            ativar_proprietario()
         elif opcao_escolhida ==4:
             finalizar_programa()
         else:
@@ -91,6 +98,7 @@ def escolhe_opcao():
         opcao_invalida()
 
 def main():
+        os.system("cls")
         mostra_titulo()
         mostra_escolhas()
         escolhe_opcao()
